@@ -4,10 +4,10 @@ import { Outlet } from 'react-router-dom';
 import { Footer } from './Footer';
 
 
-export const Layout = () => {
+export const Layout = ({isAuthenticated,setIsAuthenticated}) => {
   return (
     <div>
-        <Navbar />
+        <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}/>
             <Outlet />
         <Footer />
     </div>

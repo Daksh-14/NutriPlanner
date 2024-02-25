@@ -87,4 +87,16 @@ router
         }
     })
 
+router
+    .route('/logout')
+    .post((req,res)=>{
+        try {
+            res.cookie("token","",1);
+            const data="User Logout Successfully";
+            res.status(200).send({data:data});
+        } catch (error) {
+            console.log(error);
+        }
+    })
+
 export default router;

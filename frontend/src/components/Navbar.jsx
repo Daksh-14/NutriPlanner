@@ -1,16 +1,28 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Navbar.css";
 import { GiRocketThruster } from "react-icons/gi";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
-export const Navbar =()=> {
+export const Navbar =({isAuthenticated,setIsAuthenticated})=> {
   const [click, setClick] = useState(false);
+  const navigate = useNavigate();
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+
+  const logoutHandle = async()=>{
+    setIsAuthenticated(false);
+    try {
+      const response = await axios.post('api/user/logout');
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <>
@@ -58,28 +70,45 @@ export const Navbar =()=> {
                   About
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink
-                  to="/signup"
-                  className={({ isActive }) =>
-                    "nav-links" + (isActive ? " activated" : "")
-                  }
-                  onClick={closeMobileMenu}
-                >
-                  Signup
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink
-                  to="/login"
-                  className={({ isActive }) =>
-                    "nav-links" + (isActive ? " activated" : "")
-                  }
-                  onClick={closeMobileMenu}
-                >
-                  Login
-                </NavLink>
-              </li>
+              { isAuthenticated ? (
+                  <>
+                    <li className="nav-item">
+                      <NavLink
+                        className={({ isActive }) =>
+                          "nav-links" + (isActive ? " activated" : "")
+                        }
+                        onClick={logoutHandle}
+                      >
+                        Logout
+                      </NavLink>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li className="nav-item">
+                      <NavLink
+                        to="/signup"
+                        className={({ isActive }) =>
+                          "nav-links" + (isActive ? " activated" : "")
+                        }
+                        onClick={closeMobileMenu}
+                      >
+                        Signup
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        to="/login"
+                        className={({ isActive }) =>
+                          "nav-links" + (isActive ? " activated" : "")
+                        }
+                        onClick={closeMobileMenu}
+                      >
+                        Login
+                      </NavLink>
+                    </li>
+                  </>
+                )}
             </ul>
           </div>
         </nav>

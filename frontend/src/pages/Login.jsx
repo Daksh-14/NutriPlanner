@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../styles/login.css'
 
-export const Login = () => {
+export const Login = ({setIsAuthenticated}) => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [formData, setFormData] = useState({
@@ -17,10 +17,13 @@ export const Login = () => {
     try {
       setLoading(true);
       const response = await axios.post('api/user/login', formData);
+      setIsAuthenticated(true);
       navigate('/');
+
     } catch (error) {
       console.log(error);
       setError(error.response.data.data);
+      
     } finally {
       setLoading(false);
     }
