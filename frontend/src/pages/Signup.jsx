@@ -6,8 +6,8 @@ import '../styles/signup.css';
 export const Signup = () => {
   const navigate = useNavigate();
   const [formData,setFormData] = useState({
-    firstname:"",
-    lastname:"",
+    firstName:"",
+    lastName:"",
     email:"",
     password:""
   });
@@ -31,7 +31,7 @@ export const Signup = () => {
   }
 
   const onChangeHandler =(e)=>{
-    const [name,value] = e.target;
+    const {name,value} = e.target;
     setFormData((prevData)=>{
       return {
         ...prevData,
@@ -49,7 +49,7 @@ export const Signup = () => {
           type="text"
           id="firstName"
           name="firstName"
-          value={formData.firstname}
+          value={formData.firstName}
           onChange={onChangeHandler}
         />
         <br />
@@ -58,7 +58,7 @@ export const Signup = () => {
           type="text"
           id="lastName"
           name="lastName"
-          value={formData.lastname}
+          value={formData.lastName}
           onChange={onChangeHandler}
         />
         <br />

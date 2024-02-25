@@ -17,15 +17,10 @@ export const Login = () => {
     try {
       setLoading(true);
       const response = await axios.post('api/user/login', formData);
-      if(response.status==400 || response.status==401 || response.status==402){
-          setError("Wrong credentials. Please try again.");
-      }
-      else{
-        navigate('/');
-      }
+      navigate('/');
     } catch (error) {
       console.log(error);
-      setError("An error occurred. Please try again later.");
+      setError(error.response.data.data);
     } finally {
       setLoading(false);
     }
