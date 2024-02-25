@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../styles/signup.css';
 
-export const Signup = () => {
+export const Signup = ({setIsAuthenticated}) => {
   const navigate = useNavigate();
   const [formData,setFormData] = useState({
     firstName:"",
@@ -19,6 +19,7 @@ export const Signup = () => {
         try {
           setLoading(true);
           const response = await axios.post('api/user/register',formData);
+          setIsAuthenticated(true);
           navigate('/');
         } catch (error) {
           console.log(error);
