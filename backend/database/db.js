@@ -4,7 +4,7 @@ export const db = new pg.Client({
     user: "postgres",
     host: "localhost",
     database: "Nutriplan",
-    password: "DV@11050905",
+    password: "",
     port: 5432,
 });
 
