@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../styles/Navbar.css";
+import "../styles/navbar.css";
 import { GiRocketThruster } from "react-icons/gi";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
@@ -74,9 +74,7 @@ export const Navbar =({isAuthenticated,setIsAuthenticated})=> {
                   <>
                     <li className="nav-item">
                       <NavLink
-                        className={({ isActive }) =>
-                          "nav-links" + (isActive ? " activated" : "")
-                        }
+                        className="nav-links"
                         onClick={logoutHandle}
                       >
                         Logout
