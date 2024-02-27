@@ -5,7 +5,7 @@ import '../styles/signup.css';
 import { BackButton } from '../components/BackButton';
 import { Loading } from '../components/Loading';
 
-export const Signup = ({setIsAuthenticated}) => {
+export const Signup = ({setToken}) => {
   const navigate = useNavigate();
   const [formData,setFormData] = useState({
     firstName:"",
@@ -21,7 +21,9 @@ export const Signup = ({setIsAuthenticated}) => {
         try {
           setLoading(true);
           const response = await axios.post('api/user/register',formData);
-          setIsAuthenticated(true);
+          console.log(response.data);
+          localStorage.setItem('token', response.data.token);
+          setToken(response.data.token);
           navigate('/');
         } catch (error) {
           console.log(error);

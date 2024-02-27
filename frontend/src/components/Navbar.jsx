@@ -7,7 +7,7 @@ import { IconContext } from "react-icons/lib";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 
-export const Navbar =({isAuthenticated,setIsAuthenticated})=> {
+export const Navbar =({token,setToken})=> {
   const [click, setClick] = useState(false);
   const navigate = useNavigate();
 
@@ -15,7 +15,8 @@ export const Navbar =({isAuthenticated,setIsAuthenticated})=> {
   const closeMobileMenu = () => setClick(false);
 
   const logoutHandle = async()=>{
-    setIsAuthenticated(false);
+    localStorage.removeItem('token');
+    setToken(null);
     try {
       const response = await axios.post('api/user/logout');
       navigate('/');
@@ -70,7 +71,7 @@ export const Navbar =({isAuthenticated,setIsAuthenticated})=> {
                   About
                 </NavLink>
               </li>
-              { isAuthenticated ? (
+              { token ? (
                   <>
                     <li className="nav-item">
                       <NavLink
