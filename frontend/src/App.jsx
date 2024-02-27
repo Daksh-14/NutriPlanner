@@ -17,8 +17,10 @@ import { FoodRecipe } from './pages/Features/FoodRecipe';
 import { Nutrition } from './pages/Features/Nutrition';
 import { PhotoInfo } from './pages/Features/PhotoInfo';
 import { Chatbot } from './pages/Features/Chatbot';
+import { Tracker } from './pages/Features/Tracker';
 import { useState } from 'react';
 import { ErrorPage } from './components/ErrorPage';
+
 
 export const App =()=>{
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -41,6 +43,7 @@ export const App =()=>{
           <Route path='/features/nutrition' element={<Nutrition/>}/>
           <Route path='/features/chatbot' element={<Chatbot />}/>
           <Route path='/features/photoinfo' element={<PhotoInfo />}/>
+          <Route path='/features/tracker' element={<Tracker />}/>
         </>
       ) : (
         <>

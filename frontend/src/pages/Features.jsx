@@ -1,27 +1,101 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from "react-router-dom";
+import '../styles/features.css';
+
+const featureArr = [
+  {
+    id:1,
+    title : 'Food-Recipe',
+    detail: 'Explore a variety of delicious recipes and cooking ideas to inspire your culinary adventures.',
+    to : '/features/foodrecipe'
+  },
+  {
+    id:2,
+    title : 'Nutrition',
+    detail: 'Learn about healthy eating habits, nutritional information, and how to maintain a balanced diet.',
+    to : '/features/nutrition'
+  },
+  {
+    id:3,
+    title : 'AI Chatbot',
+    detail: 'Engage with our AI-powered chatbot for quick answers, assistance, and personalized recommendations.',
+    to : '/features/chatbot'
+  },
+  {
+    id:4,
+    title : 'Food Recognition',
+    detail: 'Effortlessly identify various foods and ingredients using advanced image recognition technology.',
+    to : '/features/photoinfo'
+  },
+  {
+    id:5,
+    title : 'Tracker',
+    detail: 'Track your progress, set goals, and monitor your activities to stay motivated and achieve success.',
+    to : '/features/tracker'
+  },
+];
 
 
 export const Features = () => {
+    const [feature,setFeature] = useState(featureArr[0]);
+  
+    const handleClick = (id)=>{
+        const findFeature = featureArr.find((obj)=>{
+            if(obj.id === id){
+              return obj;
+            }
+        });
+        console.log(findFeature);
+        setFeature(findFeature);
+    }
+
   return (
     <div>
+     <div className="feature-main">
       <h1>Features</h1>
-      <NavLink to='/features/foodrecipe'>
-        Food-Recipe
-      </NavLink>
-      <br />
-      <NavLink to='/features/nutrition'>
-        Nutrition
-      </NavLink>
-      <br />
-      <NavLink to='/features/chatbot'>
-        ChatBot
-      </NavLink>
-      <br />
-      <NavLink to='/features/photoinfo'>
-        Food Recognition
-      </NavLink>
-      <br />
+      <p>Discover the latest and greatest features now available! Our team is always working hard to bring you the best experience possible. With our newest updates, you'll be able to streamline your workflow, save time, and get more done. From advanced tools to improved user interfaces, our platform has everything you need to be more productive and efficient. Whether you're a seasoned user or new to our platform, you'll love what we've added. So check out our latest features and start exploring today!</p>
+    </div> 
+      <div className="feature-container">
+        <div className="feature-link">
+          <div className='feature-border'>
+            <NavLink onClick={() => handleClick(1)}>
+              Food-Recipe 
+            </NavLink>
+          </div>
+            <br />
+            <div className='feature-border'>
+            <NavLink onClick={() => handleClick(2)}>
+              Nutrition
+            </NavLink>
+            </div>
+            <br />
+            <div className='feature-border'>
+            <NavLink onClick={() => handleClick(3)} >
+              AI ChatBot
+            </NavLink>
+            </div>
+            <br />
+            <div className='feature-border'>
+            <NavLink onClick={() => handleClick(4)}>
+              Food Recognition
+            </NavLink>
+            </div>
+            <br />
+            <div className='feature-border'>
+            <NavLink onClick={() => handleClick(5)}>
+              Tracker
+            </NavLink>
+            </div>
+            <br />
+        </div>
+        {
+          <div className='feature-clicked'>
+            <h1>{feature.title}</h1>
+            <p>{feature.detail}</p>
+            <NavLink to={feature.to}>Try Now!</NavLink>
+          </div>
+        }
+      </div>
     </div>
   )
 }

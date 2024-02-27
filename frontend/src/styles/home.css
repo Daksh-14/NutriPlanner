@@ -57,16 +57,15 @@
 
 .Home_testimonial-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     margin: 20px;
 }
 
 .Home_testimonial-card {
-    flex: 0 0 calc(33.33% - 20px); /* Adjust the width as needed, considering margins */
-    max-width: 400px;
-    margin: 20px;
-    padding: 20px;
+    flex: 0 0 calc(33.33% - 20px);
+     margin: 10px;
+    padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     background-color: rgb(252, 237, 216);
@@ -115,7 +114,9 @@
     .Home_Text {
         font-size: 1rem;
     }
-
+    .Home_testimonial-container{
+        flex-direction: column;
+    } 
     .Diff_vegies{
         max-width: 90vw;
         height: auto;

@@ -59,7 +59,7 @@ export const Signup = ({setIsAuthenticated}) => {
             name="firstName"
             value={formData.firstName}
             onChange={onChangeHandler}
-            autocomplete="off"
+            autoComplete="off"
           />
           <br />
           <input
@@ -70,7 +70,7 @@ export const Signup = ({setIsAuthenticated}) => {
             name="lastName"
             value={formData.lastName}
             onChange={onChangeHandler}
-            autocomplete="off"
+            autoComplete="off"
           />
           <br />
           <input
@@ -81,7 +81,7 @@ export const Signup = ({setIsAuthenticated}) => {
             name="email"
             value={formData.email}
             onChange={onChangeHandler}
-            autocomplete="off"
+            autoComplete="off"
           />
           <br />
           <input
@@ -92,7 +92,7 @@ export const Signup = ({setIsAuthenticated}) => {
             name="password"
             value={formData.password}
             onChange={onChangeHandler}
-            autocomplete="off"
+            autoComplete="off"
           />
           <br />
           <div className="signup-wrapper">

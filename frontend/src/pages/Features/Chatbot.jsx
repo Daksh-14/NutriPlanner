@@ -3,10 +3,11 @@ import { IoSend } from "react-icons/io5";
 import { BackButton } from '../../components/BackButton';
 import { Loading } from '../../components/Loading';
 import '../../styles/chatbot.css';
+import axios from 'axios';
 
 export const Chatbot = () => {
-  const [output,setOutput] = useState({});
-  const [isoutput,setIsOutput] = useState(false);
+  const [output,setOutput] = useState("");
+  const [isoutput,setIsOutput] = useState(true);
   const [inputData,setInputData] = useState({
     chat:""
   });
@@ -17,14 +18,18 @@ export const Chatbot = () => {
       const submitData = async()=>{
         try {
           setLoading(true);
-          const response = await axios.post('api/chatbot',inputData);
-          output(response.data);
+          const response = await axios.post('/api/chatbot',inputData);
+          console.log(response.data);
+          setOutput(response.data);
           setIsOutput(true);
         } catch (error) {
           console.log(error);
         }
         finally{
           setLoading(false);
+          setInputData({
+            chat:""
+          })
         }
     }
     submitData();
@@ -40,22 +45,21 @@ export const Chatbot = () => {
       })
   }
 
-  const styles = {
-    cursor : 'pointer'
-  }
 
   return (
-    <>
+    <div className='chatbot-outer'>
       <BackButton />
     <div className='main-chatbot-container'>
-      <div className="chatbot-container">
-          {loading && <Loading />}
+      {loading && <Loading />}
+      <div className="chatbot-output">
           {isoutput && 
               <div className="output-section">
-                  <h1 className="output-heading">{output}</h1>
+                  <p className="output-heading">{output}</p>
               </div>
           }
-          <form className='chatbot-form' onSubmit={handleSubmit}>
+          </div>
+          <div className="chatbot-input">
+          <form className='chatbot-form'>
               <input
                   type="text"
                   className="chat-input"
@@ -66,10 +70,10 @@ export const Chatbot = () => {
                   onChange={onChangeHandler}
                   
               />
-              <IoSend style={styles} size={30} onClick={handleSubmit} />
+              <IoSend className='chatbot-arrow' size={30} onClick={handleSubmit} />
           </form>
+          </div>
       </div>
     </div>
-    </>
   );
 }

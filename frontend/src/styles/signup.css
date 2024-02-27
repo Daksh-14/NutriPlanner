@@ -44,14 +44,14 @@
 
 
 .signup-btn {
-  font-size: 1em;
+  font-size: 1rem;
   background-color: #21695c;
   text-align: center;
   padding: 14px;
   border-radius: 16px;
   color: #fff;
   border: none; 
-  width: 12em;
+  width: 12rem;
   margin-top:24px; 
   cursor:pointer; 
 }
