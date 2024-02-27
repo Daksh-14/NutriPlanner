@@ -23,20 +23,20 @@ import { ErrorPage } from './components/ErrorPage';
 
 
 export const App =()=>{
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [token,setToken] = useState(localStorage.getItem('token'));
 
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' 
       element={<Layout 
-        isAuthenticated={isAuthenticated} 
-        setIsAuthenticated={setIsAuthenticated}
+        token={token}
+        setToken={setToken}
       />}
     >
       <Route index element={<Home />} />
       <Route path='/about' element={<About />} />
       <Route path='/price' element={<Price />} />
       
-      {isAuthenticated ? (
+      {token ? (
         <>
           <Route path='/features' element={<Features />} />
           <Route path='/features/foodrecipe' element={<FoodRecipe/>}/>
@@ -47,8 +47,8 @@ export const App =()=>{
         </>
       ) : (
         <>
-          <Route path='/login' element={<Login setIsAuthenticated={setIsAuthenticated}/>} />
-          <Route path='/signup' element={<Signup setIsAuthenticated={setIsAuthenticated} />} />
+          <Route path='/login' element={<Login setToken={setToken}/>} />
+          <Route path='/signup' element={<Signup setToken={setToken} />} />
           <Route path="/features/*" element={<Navigate to="/signup" replace />} />
         </>
       )}

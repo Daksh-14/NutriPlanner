@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../styles/signup.css'
 import { BackButton } from '../components/BackButton';
 import { Loading } from '../components/Loading';
 
-export const Login = ({setIsAuthenticated}) => {
+export const Login = ({setToken}) => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [formData, setFormData] = useState({
@@ -19,7 +19,9 @@ export const Login = ({setIsAuthenticated}) => {
     try {
       setLoading(true);
       const response = await axios.post('api/user/login', formData);
-      setIsAuthenticated(true);
+      console.log(response.data);
+      localStorage.setItem('token', response.data.token);
+      setToken(response.data.token);
       navigate('/');
 
     } catch (error) {
