@@ -18,7 +18,8 @@ export const Chatbot = () => {
       const submitData = async()=>{
         try {
           setLoading(true);
-          const response = await axios.post('/api/chatbot',inputData);
+          setIsOutput(false);
+          const response = await axios.post('/api/chatbot/',inputData);
           console.log(response.data);
           setOutput(response.data);
           setIsOutput(true);
