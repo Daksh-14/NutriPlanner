@@ -17,3 +17,5 @@ router
             console.log(error);
         }
     })
+
+export default router
