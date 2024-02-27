@@ -55,7 +55,7 @@ export const Login = ({setIsAuthenticated}) => {
           name="email"
           value={formData.email}
           onChange={onChangeHandler}
-          autocomplete="off"
+          autoComplete="off"
         />
         <br />
         <input
@@ -66,7 +66,7 @@ export const Login = ({setIsAuthenticated}) => {
           name="password"
           value={formData.password}
           onChange={onChangeHandler}
-          autocomplete="off"
+          autoComplete="off"
         />
         <br />
         {error && <p className="error">{error}</p>}
