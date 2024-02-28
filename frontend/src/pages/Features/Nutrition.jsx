@@ -23,11 +23,14 @@ export const Nutrition = () => {
     const submitData = async()=>{
         try {
           setLoading(true);
+
           setIsOutput(false);
           console.log(formData);
           const response = await axios.post('/api/nutrition/',formData);
           setOutput(response.data);
           setIsOutput(true);
+          const response = await axios.post('/api/nutrition/',formData);
+
         } catch (error) {
           console.log(error);
         }
