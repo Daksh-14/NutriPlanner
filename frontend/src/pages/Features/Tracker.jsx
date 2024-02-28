@@ -3,9 +3,11 @@ import { useState } from 'react';
 import { BackButton } from '../../components/BackButton';
 import '../../styles/nutrition.css';
 import '../../styles/tracker.css';
+import { Loading } from '../../components/Loading';
+import { useNavigate } from 'react-router-dom';
 
 export const Tracker = () => {
-  
+  const navigate = useNavigate();
   const [formData,setFormData] = useState({
     morning:"",
     afternoon:"",
@@ -13,8 +15,6 @@ export const Tracker = () => {
     night:"",
   });
 
-  const [output,setOutput] = useState("");
-  const [isoutput,setIsOutput] = useState(false);
   const [error,setError] = useState("");
   const [loading,setLoading] = useState(false);
 
@@ -22,10 +22,12 @@ export const Tracker = () => {
     const submitData = async()=>{
         try {
           setLoading(true);
-          setIsOutput(false);
           const response = await axios.post('/api/tracker/',formData);
-          setOutput(response.data);
-          setIsOutput(true);
+          navigate('/features/tracker/output', {
+            state:{
+              output : response.data
+            }
+          })
         } catch (error) {
           console.log(error);
           setError(error.response.data.data);
@@ -49,19 +51,15 @@ export const Tracker = () => {
 
   return (
     <div className='tracker-outer'>
+      {loading && <p>{<Loading />}</p>}
       <BackButton />
-      <div>
-          {
-            isoutput ? (
-              <h1>hello</h1>
-            ) : (
-              <div className="nutrition-container">
-              <form className='nutrition-form' onSubmit={handleSubmit}>
-              <h1>Tracker Form</h1>
-                <label className="nutrition-form-label">
+          <div className="nutrition-container">
+            <form className='nutrition-form' onSubmit={handleSubmit}>
+            <h1>Tracker Form</h1>
+              <label className="nutrition-form-label">
                 What did you eat for breakfast this morning?
                   <br />
-                  <input
+                <input
                     type="text"
                     placeholder='Enter meal'
                     name="morning"
@@ -69,7 +67,7 @@ export const Tracker = () => {
                     onChange={onChangeHandler}
                     className="tracker-form-input"
                   />
-                  </label>
+                </label>
                 <br />
                 <label className="nutrition-form-label">
                 What did you eat for lunch this afternoon?
@@ -112,11 +110,8 @@ export const Tracker = () => {
                 <br />
                 {error && <p className="error">{error}</p>}
                 <button className='nutrition-submit-button' type="submit" disabled={loading}>{loading ? 'Submitting...' : 'Submit'}</button>
-                </form>
-              </div>
-            )
-          }
-      </div>
+              </form>
+       </div>
     </div>
   )
 }
