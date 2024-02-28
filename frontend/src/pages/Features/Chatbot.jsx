@@ -60,7 +60,7 @@ export const Chatbot = () => {
           }
           </div>
           <div className="chatbot-input">
-          <form className='chatbot-form'>
+          <form className='chatbot-form' onSubmit={handleSubmit}>
               <input
                   type="text"
                   className="chat-input"
