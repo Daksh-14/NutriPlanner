@@ -15,7 +15,7 @@
 .Home_Text_cover{
     
     position: absolute;
-    left: 0;
+    left: 3vw;
     top: 0;
     width: 50vw;
     height:100vh;
@@ -112,7 +112,7 @@
 
 @media screen and (max-width: 680px){
     .Home_Text {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
     .Home_testimonial-container{
         flex-direction: column;

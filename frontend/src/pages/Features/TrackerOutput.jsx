@@ -9,7 +9,7 @@ export const TrackerOutput = () => {
   return (
     <div>
         <BackButton />
-        <h1>TrackerOutput</h1>
+        <h1>{location.state.output}</h1>
     </div>
   )
 }
