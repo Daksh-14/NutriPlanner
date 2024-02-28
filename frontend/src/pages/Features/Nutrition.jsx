@@ -192,12 +192,12 @@ export const Nutrition = () => {
           <input
             type="radio"
             name="weightLoss"
-            value="Weight Loss"
+            value="Moderate Weight Loss"
             onChange={onChangeHandler}
-            checked={formData.weightLoss === "Weight Loss"}
+            checked={formData.weightLoss === "Moderate Weight Loss"}
             required
             id="weight-loss"
-          /> Weight Loss
+          />Moderate Weight Loss
           </label>
           <br />
           <label htmlFor="extreme-loss">
