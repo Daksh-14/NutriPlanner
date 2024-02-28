@@ -20,7 +20,7 @@ export const Nutrition = () => {
     const submitData = async()=>{
         try {
           setLoading(true);
-          const response = await axios.post('api/nutrition',formData);
+          const response = await axios.post('/api/nutrition/',formData);
         } catch (error) {
           console.log(error);
         }
