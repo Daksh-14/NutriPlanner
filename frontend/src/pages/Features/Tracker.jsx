@@ -5,6 +5,7 @@ import '../../styles/nutrition.css';
 import '../../styles/tracker.css';
 import { Loading } from '../../components/Loading';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export const Tracker = () => {
   const navigate = useNavigate();
@@ -19,9 +20,11 @@ export const Tracker = () => {
   const [loading,setLoading] = useState(false);
 
   const handleSubmit = (e)=>{
+    e.preventDefault();
     const submitData = async()=>{
         try {
           setLoading(true);
+          console.log(formData);
           const response = await axios.post('/api/tracker/',formData);
           navigate('/features/tracker/output', {
             state:{
@@ -51,7 +54,7 @@ export const Tracker = () => {
 
   return (
     <div className='tracker-outer'>
-      {loading && <p>{<Loading />}</p>}
+      {loading && <Loading />}
       <BackButton />
           <div className="nutrition-container">
             <form className='nutrition-form' onSubmit={handleSubmit}>

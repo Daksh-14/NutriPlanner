@@ -82,7 +82,7 @@ export const Nutrition = () => {
           <input
             type="number"
             name="height"
-            placeholder='Enter Height'
+            placeholder='Enter Height(in cm)'
             value={formData.height}
             onChange={onChangeHandler}
             className="nutrition-form-input"
@@ -96,7 +96,7 @@ export const Nutrition = () => {
           <input
             type="number"
             name="weight"
-            placeholder='Enter Weight'
+            placeholder='Enter Weight(in kg)'
             value={formData.weight}
             onChange={onChangeHandler}
             className="nutrition-form-input"

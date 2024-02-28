@@ -4,6 +4,7 @@ import signUp from './routes/signUp.js';
 import { db } from './database/db.js';
 import chatBot from './routes/chatBot.js';
 import nutrition from './routes/nutrition.js';
+import tracker from './routes/tracker.js';
 import cookieParser from 'cookie-parser';
 
 const app = express();
@@ -17,6 +18,7 @@ app.get('/',(req,res)=>{
 app.use('/api/user',signUp);
 app.use('/api/chatbot',chatBot);
 app.use('/api/nutrition',nutrition);
+app.use('/api/tracker',tracker);
 app.use(cookieParser());
 
 
