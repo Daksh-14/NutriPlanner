@@ -2,7 +2,8 @@ import express  from 'express';
 import { PORT } from './config.js';
 import signUp from './routes/signUp.js';
 import { db } from './database/db.js';
-import chatBot from './routes/chatBot.js'
+import chatBot from './routes/chatBot.js';
+import nutrition from './routes/nutrition.js';
 import cookieParser from 'cookie-parser';
 
 const app = express();
@@ -15,6 +16,7 @@ app.get('/',(req,res)=>{
 
 app.use('/api/user',signUp);
 app.use('/api/chatbot',chatBot);
+app.use('/api/nutrition',nutrition);
 app.use(cookieParser());
 
 

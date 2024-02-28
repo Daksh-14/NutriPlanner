@@ -1,9 +1,12 @@
-
+.signup_outer{
+  background-color: #f1f1ea;
+}
 .signup-main-container {
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #f1f1ea;
 }
 
 .signup-container {

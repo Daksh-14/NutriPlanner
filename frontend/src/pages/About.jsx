@@ -2,10 +2,13 @@ import React from 'react'
 import background from'../assets/about_background.jpg'
 import nutritionist from '../assets/Nutritonist1.jpg'
 import researcher from '../assets/researcher.jpg';
+import {BackButton} from '../components/BackButton';
 import '../styles/about.css'
 
 export const About = () => {
   return (
+    <div className="About_outer">
+      <BackButton />
     <div className='About_Screen'>
       <div className="About_Container">
       <img className="About_back_image" src={background} alt="" />
@@ -51,6 +54,7 @@ export const About = () => {
         <div className="About_topic_text"><p>Whether you're on a quest for weight loss, muscle gain, or all-around well-being, NutriPlan is your companion. Our platform integrates the latest scientific insights into practical, personalized recommendations, making wellness an achievable and enjoyable journey. Our commitment to ongoing research and development is the cornerstone of our mission.</p></div>
         
       </div>
+    </div>
     </div>
   )
 }

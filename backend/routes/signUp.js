@@ -53,7 +53,7 @@ router
             }
             const user=await db.query("select id,email,password from users where email=$1",[email]);
             if(user.rowCount==0){
-                const data="This email does not exist. Please signup first";
+                const data="This user does not exist. Please signup first";
                 res.status(401).send({data:data});
             }
             const hashString = user.rows[0].password.toString();

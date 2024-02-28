@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState } from 'react';
 import '../../styles/nutrition.css';
+import axios from 'axios';
+import {BackButton} from '../../components/BackButton';
 
 export const Nutrition = () => {
   const [formData,setFormData] = useState({
@@ -12,7 +14,8 @@ export const Nutrition = () => {
     no_meals:"",
     weightLoss:""
   });
-
+  const [output,setOutput] = useState("");
+  const [isoutput,setIsOutput] = useState(false);
   const [loading,setLoading] = useState(false);
 
   const handleSubmit = (e)=>{
@@ -20,7 +23,11 @@ export const Nutrition = () => {
     const submitData = async()=>{
         try {
           setLoading(true);
-          const response = await axios.post('api/nutrition',formData);
+          setIsOutput(false);
+          console.log(formData);
+          const response = await axios.post('/api/nutrition/',formData);
+          setOutput(response.data);
+          setIsOutput(true);
         } catch (error) {
           console.log(error);
         }
@@ -42,7 +49,15 @@ export const Nutrition = () => {
   }
 
   return (
+    <div className='Nutri_outer'>
+    <BackButton />
     <div>
+      {
+        isoutput ? 
+        (
+        <h1>{output}</h1> 
+        ):
+    (
     <div className="nutrition-container">
       <form className='nutrition-form' onSubmit={handleSubmit}>
       <h1>Nutrition Form</h1>
@@ -50,12 +65,13 @@ export const Nutrition = () => {
           What is your Age?
           <br />
           <input
-            type="number"
+            type="number" inputMode="numeric"
             placeholder='Enter Age'
             name="age"
             value={formData.age}
             onChange={onChangeHandler}
             className="nutrition-form-input"
+            required
           />
         </label>
         <br />
@@ -69,6 +85,7 @@ export const Nutrition = () => {
             value={formData.height}
             onChange={onChangeHandler}
             className="nutrition-form-input"
+            required
           />
         </label>
         <br />
@@ -82,6 +99,7 @@ export const Nutrition = () => {
             value={formData.weight}
             onChange={onChangeHandler}
             className="nutrition-form-input"
+            required
           />
         </label>
         <br />
@@ -96,6 +114,7 @@ export const Nutrition = () => {
               name="gender"
               value="male"
               onChange={onChangeHandler}
+              required
               checked={formData.gender === "male"}
             /> Male
           </label>
@@ -107,6 +126,7 @@ export const Nutrition = () => {
               name="gender"
               value="female"
               onChange={onChangeHandler}
+              required
               checked={formData.gender === "female"}
             /> Female
           </label>
@@ -121,6 +141,7 @@ export const Nutrition = () => {
             placeholder='Enter no. of days'
             value={formData.no_days}
             onChange={onChangeHandler}
+            required
             className="nutrition-form-input"
           />
         </label>
@@ -134,6 +155,7 @@ export const Nutrition = () => {
            placeholder='Enter no. of meals'
            value={formData.no_meals}
            onChange={onChangeHandler}
+           required
            className="nutrition-form-input"
          />
        </label>
@@ -147,6 +169,7 @@ export const Nutrition = () => {
             name="weightLoss"
             value="Maintain Weight"
             onChange={onChangeHandler}
+            required
             checked={formData.weightLoss === "Maintain Weight"}
             id="maintain-weight"
           /> Maintain Weight
@@ -159,6 +182,7 @@ export const Nutrition = () => {
             value="Mild Weight Loss"
             onChange={onChangeHandler}
             checked={formData.weightLoss === "Mild Weight Loss"}
+            required
             id="mild-loss"
           /> Mild Weight Loss
           </label>
@@ -170,6 +194,7 @@ export const Nutrition = () => {
             value="Weight Loss"
             onChange={onChangeHandler}
             checked={formData.weightLoss === "Weight Loss"}
+            required
             id="weight-loss"
           /> Weight Loss
           </label>
@@ -180,6 +205,7 @@ export const Nutrition = () => {
             name="weightLoss"
             value="Extreme Weight Loss"
             onChange={onChangeHandler}
+            required
             checked={formData.weightLoss === "Extreme Weight Loss"}
             id="extreme-loss"
           /> Extreme Weight Loss
@@ -188,6 +214,8 @@ export const Nutrition = () => {
        <br />
        <button className='nutrition-submit-button' type="submit" disabled={loading}>{loading ? 'Submitting...' : 'Submit'}</button>
      </form>
+   </div>
+   )}
    </div>
    </div>
   )

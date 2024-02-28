@@ -59,7 +59,7 @@ export const Features = () => {
     }
 
   return (
-    <>
+    <div className='features_outer'>
     <BackButton />
     <div className='feature_Container'>
      <div className="feature-main">
@@ -109,7 +109,7 @@ export const Features = () => {
         }
       </div>
     </div>
-    </>
+    </div>
   )
 }
 
