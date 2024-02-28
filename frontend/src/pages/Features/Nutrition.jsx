@@ -3,8 +3,12 @@ import { useState } from 'react';
 import '../../styles/nutrition.css';
 import axios from 'axios';
 import {BackButton} from '../../components/BackButton';
+import { Loading } from '../../components/Loading';
+import { NutritionOutput } from './NutritionOutput';
+import { useNavigate } from 'react-router-dom';
 
 export const Nutrition = () => {
+  const navigate = useNavigate();
   const [formData,setFormData] = useState({
     age:"",
     height:"",
@@ -14,8 +18,7 @@ export const Nutrition = () => {
     no_meals:"",
     weightLoss:""
   });
-  const [output,setOutput] = useState("");
-  const [isoutput,setIsOutput] = useState(false);
+  const [error,setError] = useState("");
   const [loading,setLoading] = useState(false);
 
   const handleSubmit = (e)=>{
@@ -23,16 +26,17 @@ export const Nutrition = () => {
     const submitData = async()=>{
         try {
           setLoading(true);
-
-          setIsOutput(false);
           console.log(formData);
           const response = await axios.post('/api/nutrition/',formData);
-          setOutput(response.data);
-          setIsOutput(true);
-          const response = await axios.post('/api/nutrition/',formData);
-
+          console.log(response.data);
+          navigate('/features/nutrition/output',{
+            state:{
+              output : response.data
+            }
+          });
         } catch (error) {
           console.log(error);
+          setError(error.response.data.data);
         }
         finally{
           setLoading(false);
@@ -53,14 +57,8 @@ export const Nutrition = () => {
 
   return (
     <div className='Nutri_outer'>
+    {loading && <Loading />}
     <BackButton />
-    <div>
-      {
-        isoutput ? 
-        (
-        <h1>{output}</h1> 
-        ):
-    (
     <div className="nutrition-container">
       <form className='nutrition-form' onSubmit={handleSubmit}>
       <h1>Nutrition Form</h1>
@@ -215,10 +213,9 @@ export const Nutrition = () => {
           </label>
         </label>
        <br />
+       {error && <p>{error}</p>}
        <button className='nutrition-submit-button' type="submit" disabled={loading}>{loading ? 'Submitting...' : 'Submit'}</button>
      </form>
-   </div>
-   )}
    </div>
    </div>
   )
