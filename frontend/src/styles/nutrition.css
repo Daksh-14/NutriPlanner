@@ -1,3 +1,6 @@
+.Nutri_outer{
+  background-color: #f1f1ea;
+}
 .nutrition-container {
     display: flex;
     justify-content: center;
@@ -37,6 +40,16 @@
     color: #fff; 
     border-radius: 10px;
   }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+Firefox
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
   .nutrition-submit-button:hover{
     background-color: #3a9e86; 
@@ -52,5 +65,9 @@
     }
     .nutrition-form-input{
         width: 40vw;
+    }
+    .nutrition-submit-button{
+    width: 25vw;
+
     }
 }

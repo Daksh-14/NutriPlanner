@@ -14,6 +14,7 @@ export const Signup = ({setToken}) => {
     password:""
   });
   const [loading,setLoading] = useState(false);
+  const [error,setError] = useState("");
 
   const handleSubmit = (e)=>{
     e.preventDefault();
@@ -27,6 +28,7 @@ export const Signup = ({setToken}) => {
           navigate('/');
         } catch (error) {
           console.log(error);
+          setError(error.response.data.data);
         }
         finally{
           setLoading(false);
@@ -46,7 +48,7 @@ export const Signup = ({setToken}) => {
   }
 
   return (
-    <>
+    <div className='signup_outer'>
     {loading && <Loading />}
     <BackButton />
     <div className='signup-main-container'>
@@ -97,13 +99,14 @@ export const Signup = ({setToken}) => {
             autoComplete="off"
           />
           <br />
+          {error && <p className="error">{error}</p>}
           <div className="signup-wrapper">
           <button className='signup-btn' disabled={loading}>Sign up</button>
           </div>
         </form>
      </div>
     </div>
-    </>
+    </div>
   );
 }
 

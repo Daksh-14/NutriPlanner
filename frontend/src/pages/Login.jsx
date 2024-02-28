@@ -42,7 +42,7 @@ export const Login = ({setToken}) => {
   }
 
   return (
-    <>
+    <div className='signup_outer'>
     {loading && <Loading />}
     <BackButton />
     <div className='signup-main-container'>
@@ -78,7 +78,7 @@ export const Login = ({setToken}) => {
       </form>
      </div>
     </div>
-    </>
+    </div>
   );
 }
 

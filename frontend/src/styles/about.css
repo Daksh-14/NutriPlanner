@@ -1,3 +1,6 @@
+.About_outer{
+    background-color: #f1f1ea;
+}
 .About_back_image{
     width:100vw;
     z-index: -1;
@@ -6,7 +9,7 @@
 .About_Screen{
     width: 100vw;
     position: relative;
-    background-color:#f5f5f4;
+    background-color:#f1f1ea;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
