@@ -5,7 +5,6 @@ import { BackButton } from '../../components/BackButton';
 export const TrackerOutput = () => {
     const location = useLocation();
     console.log(location);
-
   return (
     <div>
         <BackButton />
